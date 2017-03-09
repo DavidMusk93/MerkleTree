@@ -1,0 +1,1 @@
+This directory contains blocks which were cut from /data/verified_file.
