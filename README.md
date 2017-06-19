@@ -6,5 +6,9 @@ Let imagine a scenery, you upload a 2GB file `A` to you web server and the file 
 > ### What is Merkle Tree look like?
 <div align="center">
   <img src="MerkleTree.png" width=50% alt="MerkleTree">
-  <p>Merkle Tree classic construction</p>
+  <p>pic1. Merkle Tree classic construction</p>
 </div>
+Suppose we split file `A` into 8 equal pieces, this is block1, block2, ..., block8. We use `sha256` to get the blcok hash tags corresponding to X1, X2, ..., X8 in pic1. We class nodes as follows:
+    `leaf node`: X1, X2, ..., X8;
+    `middle node (a.k.a none-leaf node)`: A1, A2, ..., A14;
+    `roof node`: A15. 
