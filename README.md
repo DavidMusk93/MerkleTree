@@ -28,4 +28,4 @@ In [merkle_tree.py](merkle.tree.py), the `Node` class is implemented. Each node 
 In Merkle Tree, the parent node's value is bonded with its child's values. To be simplified, I choose sha512:
 <p align="center">parent_node.value = sha512(right_child.value + left_child.vlaue)</p>
 
-However, before we generate a Merkle Tree, how to get tags X1, X2, ..., X8? As we mentioned above, Xi is calculated by blocki using sha256 where i &#8712 (1, 2, ..., 8).
+However, before we generate a Merkle Tree, how to get tags X1, X2, ..., X8? As we mentioned above, Xi is calculated by blocki using sha256 where i &#8712; (1, 2, ..., 8).
