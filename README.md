@@ -6,7 +6,7 @@ Let imagine a scenery, you upload a 2GB file `A` to you web server and the file 
 > ### What is Merkle Tree looks like?
 
 <div align="center">
-  <img src="MerkleTree.png" width=50% alt="MerkleTree">
+  <img src="MerkleTree.png" width=100% alt="MerkleTree">
   <p>pic1. Merkle Tree classic construction</p>
 </div>
 
