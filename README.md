@@ -3,7 +3,7 @@ Merkle tree is a classic data structure for checking data integrity, this projec
 
 Let imagine a scenery, you upload a 2GB file `A` to you web server and the file is stroed block by block (a<sub>1</sub>, a<sub>2</sub>, ...). Before you upload `A`, you stroe a `root node` of the merkle tree which is caculated by those blocks. After you upload `A`, you delete file `A` in your computer. After a period, you want to make sure if those blocks are integral. Then, you download one of the blocks from sever (to be simplified, suppose you download a<sub>1</sub>), at the sometime the server returns you a `authentication path`. You get a value caculated by a<sub>1</sub> and `authentication path`, after that, you check in if `root node` is equal to the caculated value, if ture, you get a answer 'Server is good, the data is integrity.', else you wonder 'On, no... the data is not integrity!'.
 
-> ### What is Merkle Tree looks like?
+> ## What is Merkle Tree looks like?
 
 <div align="center">
   <img src="MerkleTree.png" width=70% alt="MerkleTree">
@@ -28,7 +28,7 @@ In Merkle Tree, the parent node's value is bonded with its child's values. To be
 
 However, before we generate a Merkle Tree, how to get tags X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>8</sub>? As we mentioned above, X<sub>i</sub> is calculated by block<sub>i</sub> using sha256 where i &#8712; (1, 2, ..., 8).
 
-> ### How to split a file into blocks with specified block size?
+> ## How to split a file into blocks with specified block size?
 Given a specified block size, we seperate a block into two segments. One records the length of valid bytes, the other stores the valid bytes. For the last block, its size maybe less than specified size, thus we append adequate `$` as follows:
 ```
 def pad_block(block, block_size):
@@ -42,4 +42,10 @@ def pad_block(block, block_size):
         
     return regular_block
 ```
+> ## How to authenticate integrity?
+Typically, we declare the authentication as challenge-responde protocal. There are 3 phrases (let's take block<sub>1</sub> for example):
+1. The client picks up an arbitrary block number 1 and downloads block<sub>1</sub> from server. Then calculates tag X<sub>1</sub> corresponding to block<sub>1</sub> and send block number 1 to server.
+2. The server receives the block number 1, it generates a merkle tree over related file. Send authentication path (A<sub>2</sub>, A<sub>10</sub>, A<sub>14</sub>) to client.
+3. After The client receices the anthentication path, it calculates merkle tree root by tag X<sub>1</sub> and authentication path. Next, it retrives local merkle tree root, then compares those root. If calculated merkle root is equal to local merkle tree, we could make sure the file in the server is integrity. Otherwise, our file in the server is compromised.
+
 
