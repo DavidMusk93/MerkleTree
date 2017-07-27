@@ -29,3 +29,17 @@ In Merkle Tree, the parent node's value is bonded with its child's values. To be
 However, before we generate a Merkle Tree, how to get tags X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>8</sub>? As we mentioned above, X<sub>i</sub> is calculated by block<sub>i</sub> using sha256 where i &#8712; (1, 2, ..., 8).
 
 > ### How to split a file into blocks with specified block size?
+Given a specified block size, we seperate a block into two segments. One records the length of valid bytes, the other stores the valid bytes. For the last block, its size maybe less than specified size, thus we append adequate `$` as follows:
+```
+def pad_block(block, block_size):
+    size = len(block)    
+    regular_block = size.to_bytes(4, byteorder='big')
+    
+    regular_block += block
+    
+    while len(regular_block) % block_size != 0:
+        regular_block += b'$' * (block_size - len(regular_block))
+        
+    return regular_block
+```
+
